@@ -4,8 +4,9 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/at-vudang/Server_FoodMarket_Golang/infrastructure"
-	"github.com/at-vudang/Server_FoodMarket_Golang/router"
+	"github.com/at-vudang95/go-food-market-api/infrastructure"
+
+	"github.com/at-vudang95/go-food-market-api/router"
 	"github.com/garyburd/redigo/redis"
 	"github.com/go-chi/chi"
 )

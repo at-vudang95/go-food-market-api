@@ -4,13 +4,13 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/at-vudang/Server_FoodMarket_Golang/infrastructure"
-	"github.com/at-vudang/Server_FoodMarket_Golang/shared/handler"
-	mMiddleware "github.com/at-vudang/Server_FoodMarket_Golang/shared/middleware"
+	"github.com/at-vudang95/go-food-market-api/infrastructure"
+	"github.com/at-vudang95/go-food-market-api/shared/handler"
+	mMiddleware "github.com/at-vudang95/go-food-market-api/shared/middleware"
+	"github.com/at-vudang95/go-food-market-api/shared/repository"
+	"github.com/at-vudang95/go-food-market-api/shared/usecase"
+	"github.com/at-vudang95/go-food-market-api/user"
 
-	"github.com/at-vudang/Server_FoodMarket_Golang/shared/repository"
-	"github.com/at-vudang/Server_FoodMarket_Golang/shared/usecase"
-	"github.com/at-vudang/Server_FoodMarket_Golang/user"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 )
