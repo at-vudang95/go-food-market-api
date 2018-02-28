@@ -26,6 +26,30 @@ func (h *HTTPHandler) Hello(w http.ResponseWriter, r *http.Request) {
 	h.ResponseJSON(w, common)
 }
 
+// GetUserByID api
+func (h *HTTPHandler) GetUserByID(w http.ResponseWriter, r *http.Request) {
+}
+
+// ResetPassword api
+func (h *HTTPHandler) ResetPassword(w http.ResponseWriter, r *http.Request) {
+}
+
+// CheckEmail api
+func (h *HTTPHandler) CheckEmail(w http.ResponseWriter, r *http.Request) {
+}
+
+// PostUser api
+func (h *HTTPHandler) PostUser(w http.ResponseWriter, r *http.Request) {
+}
+
+// PutUser api
+func (h *HTTPHandler) PutUser(w http.ResponseWriter, r *http.Request) {
+}
+
+// DeleteUser api
+func (h *HTTPHandler) DeleteUser(w http.ResponseWriter, r *http.Request) {
+}
+
 // NewHTTPHandler responses new HTTPHandler instance.
 func NewHTTPHandler(bh *handler.BaseHTTPHandler, bu *usecase.BaseUsecase, br *repository.BaseRepository, s *infrastructure.SQL) *HTTPHandler {
 	// user set.
