@@ -20,14 +20,15 @@ type Translation struct {
 // NewTranslation returns new Translation.
 // repository: https://github.com/dalu/i18n
 func NewTranslation() *Translation {
-	dir := os.Getenv("FR_CIRCLE_API_DIR")
+	dir := os.Getenv("FOOD_API_DIR")
 	files, err := filepath.Glob(dir + "/" + DirTranslation + "/*.json")
 	if err != nil {
 		panic(err)
 	}
-	c := i18n.Config{DefaultLanguage: GetConfigString("language.default"),
-		Files: files,
-		Debug: false,
+	c := i18n.Config{
+		DefaultLanguage: "en-US",
+		Files:           files,
+		Debug:           false,
 	}
 	return &Translation{Middleware: i18n.New(c)}
 }

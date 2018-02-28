@@ -17,13 +17,12 @@ import (
 
 // Router is application struct hold Mux and db connection
 type Router struct {
-	Mux                *chi.Mux
-	SQLHandler         *infrastructure.SQL
-	S3Handler          *infrastructure.S3
-	CacheHandler       *infrastructure.Cache
+	Mux        *chi.Mux
+	SQLHandler *infrastructure.SQL
+	// S3Handler  *infrastructure.S3
+	// CacheHandler       *infrastructure.Cache
 	LoggerHandler      *infrastructure.Logger
 	TranslationHandler *infrastructure.Translation
-	SearchAPIHandler   infrastructure.SearchAPI
 }
 
 // InitializeRouter initializes Mux and middleware
@@ -59,8 +58,8 @@ func (r *Router) SetupHandler() {
 	// base set.
 	bu := usecase.NewBaseUsecase(r.LoggerHandler.Log)
 	// user set.
-	uh := user.NewHTTPHandler(bh, bu, br, r.SQLHandler, r.CacheHandler)
+	uh := user.NewHTTPHandler(bh, bu, br, r.SQLHandler)
 	r.Mux.Route("/v1", func(cr chi.Router) {
-		cr.Get("/hello", uh.RegisterByDevice)
+		cr.Get("/hello", uh.Hello)
 	})
 }

@@ -1,6 +1,8 @@
 package infrastructure
 
 import (
+	"fmt"
+
 	"github.com/at-vudang95/go-food-market-api/shared/gorm/database"
 	"github.com/jinzhu/gorm"
 	// blank import.
@@ -29,6 +31,7 @@ type dbInfo struct {
 	pass    string
 	name    string
 	logmode bool
+	port    string
 }
 
 // NewSQL returns new SQL.
@@ -41,6 +44,7 @@ func NewSQL() *SQL {
 		pass:    GetConfigString("database_master.pass"),
 		name:    GetConfigString("database_master.name"),
 		logmode: GetConfigBool("database_master.logmode"),
+		port:    GetConfigString("database_master.port"),
 	}
 	info[DBRead] = dbInfo{
 		dbms:    GetConfigString("database_read.dbms"),
@@ -49,12 +53,14 @@ func NewSQL() *SQL {
 		pass:    GetConfigString("database_read.pass"),
 		name:    GetConfigString("database_read.name"),
 		logmode: GetConfigBool("database_read.logmode"),
+		port:    GetConfigString("database_master.port"),
 	}
 	var master, read *gorm.DB
 
 	for i, v := range info {
-		connect := "host=" + v.host + " user=" + v.user + " dbname=" + v.name + " sslmode=disable password=" + v.pass
+		connect := "host=" + v.host + " port=" + v.port + " user=" + v.user + " dbname=" + v.name + " sslmode=disable password=" + v.pass
 		db, err := gorm.Open(v.dbms, connect)
+		fmt.Println(connect)
 		db.LogMode(v.logmode)
 		// Disable table name's pluralization globally
 		// if set this to true, `User`'s default table name will be `user`, table name setted with `TableName` won't be affected

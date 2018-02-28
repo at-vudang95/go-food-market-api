@@ -16,24 +16,21 @@ func main() {
 	// sql new.
 	sqlHandler := infrastructure.NewSQL()
 	// s3 new.
-	s3Handler := infrastructure.NewS3()
+	// s3Handler := infrastructure.NewS3()
 	// cache new.
-	cacheHandler := infrastructure.NewCache()
+	// cacheHandler := infrastructure.NewCache()
 	// logger new.
 	loggerHandler := infrastructure.NewLogger()
 	// translation new.
 	translationHandler := infrastructure.NewTranslation()
-	// 3rd search api setup
-	searchAPIHandler := infrastructure.NewSearchAPI()
 
 	r := &router.Router{
-		Mux:                mux,
-		SQLHandler:         sqlHandler,
-		S3Handler:          s3Handler,
-		CacheHandler:       cacheHandler,
+		Mux:        mux,
+		SQLHandler: sqlHandler,
+		// S3Handler:  s3Handler,
+		// CacheHandler:       cacheHandler,
 		LoggerHandler:      loggerHandler,
 		TranslationHandler: translationHandler,
-		SearchAPIHandler:   searchAPIHandler,
 	}
 
 	r.InitializeRouter()
@@ -41,9 +38,9 @@ func main() {
 
 	// after process
 	defer closeLogger(r.LoggerHandler.Logfile)
-	defer closeRedis(r.CacheHandler.Conn)
+	// defer closeRedis(r.CacheHandler.Conn)
 
-	_ = http.ListenAndServe(":8080", mux)
+	_ = http.ListenAndServe(":8081", mux)
 }
 
 // after process

@@ -22,13 +22,14 @@ type HTTPHandler struct {
 // "Third": If User record does not exist, register device ID to Entity.
 // "Finally":store User_ID acquired from Entity to JSON Web Token (JWT).
 func (h *HTTPHandler) Hello(w http.ResponseWriter, r *http.Request) {
-	return "Hello Word"
+	common := CommonResponse{Message: "Parse request error.", Errors: nil}
+	h.ResponseJSON(w, common)
 }
 
 // NewHTTPHandler responses new HTTPHandler instance.
-func NewHTTPHandler(bh *handler.BaseHTTPHandler, bu *usecase.BaseUsecase, br *repository.BaseRepository, s *infrastructure.SQL, c *infrastructure.Cache) *HTTPHandler {
+func NewHTTPHandler(bh *handler.BaseHTTPHandler, bu *usecase.BaseUsecase, br *repository.BaseRepository, s *infrastructure.SQL) *HTTPHandler {
 	// user set.
-	userRepo := NewRepository(br, s.Master, s.Read, c.Conn)
+	userRepo := NewRepository(br, s.Master, s.Read)
 	userUsecase := NewUsecase(bu, s.Master, userRepo)
 	return &HTTPHandler{BaseHTTPHandler: *bh, usecase: userUsecase}
 }
