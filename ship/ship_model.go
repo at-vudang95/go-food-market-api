@@ -9,8 +9,8 @@ import (
 // Ship model
 type Ship struct {
 	gorm.Model
-	Price     uint64
-	UserID    uint
-	Address   string
+	Status    byte
+	OrderID   uint
+	AddressID uint
 	DeliverAT time.Time
 }

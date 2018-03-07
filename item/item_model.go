@@ -10,9 +10,9 @@ type Item struct {
 	Name        string
 	Description string
 	Price       float64
-	Avarar      string
+	Avatar      string
 	Status      bool
 	Quantity    uint
-	UnitID      uint
 	SupplierID  uint
+	CategoryID  uint
 }

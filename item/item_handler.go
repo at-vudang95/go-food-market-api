@@ -19,7 +19,7 @@ type HTTPHandler struct {
 func (h *HTTPHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 }
 
-// GetCartByItems api
+// GetCart api
 func (h *HTTPHandler) GetCart(w http.ResponseWriter, r *http.Request) {
 }
 

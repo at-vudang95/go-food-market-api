@@ -19,4 +19,5 @@ type Item struct {
 	gorm.Model
 	Percent     int
 	PromotionID uint
+	ItemID      uint
 }
